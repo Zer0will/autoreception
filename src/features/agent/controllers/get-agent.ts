@@ -1,5 +1,5 @@
-import { Database } from '@/libs/supabase/types';
 import { createSupabaseServerClient } from '@/libs/supabase/supabase-server-client';
+import { Database } from '@/libs/supabase/types';
 
 type Agent = Database['public']['Tables']['agents']['Row'];
 type Call = Database['public']['Tables']['calls']['Row'];
