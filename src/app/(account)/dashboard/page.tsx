@@ -4,9 +4,9 @@ import { redirect } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { getEntitlements } from '@/features/account/controllers/get-entitlements';
 import { getSession } from '@/features/account/controllers/get-session';
-import { getAgent, getRecentCalls } from '@/features/agent/controllers/get-agent';
 import { AgentForm } from '@/features/agent/components/agent-form';
 import { SimulateCallButton } from '@/features/agent/components/simulate-call-button';
+import { getAgent, getRecentCalls } from '@/features/agent/controllers/get-agent';
 
 export const dynamic = 'force-dynamic';
 

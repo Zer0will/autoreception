@@ -1,6 +1,6 @@
+import { productMetadataSchema } from '@/features/pricing/models/product-metadata';
 import { supabaseAdminClient } from '@/libs/supabase/supabase-admin';
 import { createSupabaseServerClient } from '@/libs/supabase/supabase-server-client';
-import { productMetadataSchema } from '@/features/pricing/models/product-metadata';
 
 export type Entitlements = {
   tier: 'free' | 'paid';
