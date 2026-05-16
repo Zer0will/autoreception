@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
 import { createSupabaseServerClient } from '@/libs/supabase/supabase-server-client';
+import { Database } from '@/libs/supabase/types';
 
 const businessTypes = [
   'hvac',
@@ -66,7 +67,7 @@ export async function saveAgentAction(formData: FormData) {
     is_active: parsed.data.is_active ?? true,
   };
 
-  const { error } = await supabase.from('agents').upsert(payload, { onConflict: 'user_id' });
+  const { error } = await supabase.from('agents').upsert(payload as unknown as never[], { onConflict: 'user_id' });
   if (error) return { ok: false as const, error: { formErrors: [error.message], fieldErrors: {} } };
 
   revalidatePath('/dashboard');
