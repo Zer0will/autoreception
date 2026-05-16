@@ -1,4 +1,5 @@
 import { productMetadataSchema } from '@/features/pricing/models/product-metadata';
+import { SubscriptionWithProduct } from '@/features/pricing/types';
 import { supabaseAdminClient } from '@/libs/supabase/supabase-admin';
 import { createSupabaseServerClient } from '@/libs/supabase/supabase-server-client';
 
@@ -34,11 +35,12 @@ export async function getEntitlements(): Promise<Entitlements> {
     return { ...FREE_DEFAULTS, callsThisMonth: 0, callsRemaining: 5, hasReachedLimit: false };
   }
 
-  const { data: subscription } = await supabase
+  const subQuery = await supabase
     .from('subscriptions')
     .select('*, prices(*, products(*))')
     .in('status', ['trialing', 'active'])
     .maybeSingle();
+  const subscription = subQuery.data as SubscriptionWithProduct | null;
 
   let tier: 'free' | 'paid' = 'free';
   let monthlyCallLimit = FREE_DEFAULTS.monthlyCallLimit;
@@ -68,7 +70,9 @@ export async function getEntitlements(): Promise<Entitlements> {
 
   const callsThisMonth = count ?? 0;
   const isUnlimited = monthlyCallLimit === Number.POSITIVE_INFINITY;
-  const callsRemaining: number | 'unlimited' = isUnlimited ? 'unlimited' : Math.max(0, monthlyCallLimit - callsThisMonth);
+  const callsRemaining: number | 'unlimited' = isUnlimited
+    ? 'unlimited'
+    : Math.max(0, monthlyCallLimit - callsThisMonth);
   const hasReachedLimit = !isUnlimited && callsThisMonth >= monthlyCallLimit;
 
   return { tier, monthlyCallLimit, callsThisMonth, callsRemaining, hasReachedLimit, afterHours, leadSms };
