@@ -20,7 +20,8 @@ export async function POST(req: NextRequest) {
   if (!user) return Response.json({ ok: false, error: 'unauthenticated' }, { status: 401 });
 
   // Resolve the user's agent.
-  const { data: agent } = await supabase.from('agents').select('id, business_name').maybeSingle();
+  const agentQuery = await supabase.from('agents').select('id, business_name').maybeSingle();
+  const agent = agentQuery.data as { id: string; business_name: string } | null;
   if (!agent) {
     return Response.json({ ok: false, error: 'no_agent', message: 'Configure your agent first.' }, { status: 400 });
   }
@@ -86,7 +87,7 @@ const SAMPLE_CALLS = [
     urgency: 'urgent' as const,
     duration_seconds: 92,
     transcript:
-      "Hi, my AC stopped cooling this afternoon and the house is at 86 degrees. I have a baby and need someone today.",
+      'Hi, my AC stopped cooling this afternoon and the house is at 86 degrees. I have a baby and need someone today.',
     summary: 'AC down, no cooling. Baby in the home. Wants same-day service.',
   },
   {
