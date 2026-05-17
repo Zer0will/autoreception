@@ -69,13 +69,13 @@
   }
   ::selection {
     @apply text-black;
-    @apply bg-cyan-400;
+    @apply bg-amber-400;
   }
   *:focus-visible {
     @apply outline;
     @apply outline-2;
     @apply outline-offset-2;
-    @apply outline-pink-500;
+    outline-color: #F98324;
   }
   * {
     @apply border-border;

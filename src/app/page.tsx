@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { IoCheckmarkCircle, IoFlash, IoMoonOutline, IoShieldCheckmarkOutline } from 'react-icons/io5';
 
+import { AnimatedStat } from '@/components/animated-stat';
+import { CallTicker } from '@/components/call-ticker';
+import { DotPattern } from '@/components/dot-pattern';
 import { Button } from '@/components/ui/button';
 import { PricingSection } from '@/features/pricing/components/pricing-section';
 
@@ -10,6 +13,7 @@ export default function HomePage() {
   return (
     <div className='flex flex-col gap-16 lg:gap-28'>
       <Hero />
+      <CallTicker />
       <SocialProof />
       <Features />
       <ComparisonStrip />
@@ -25,6 +29,7 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className='relative overflow-hidden rounded-lg bg-black px-6 py-20 lg:px-16 lg:py-28'>
+      <DotPattern />
       <div className='relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 text-center'>
         <span className='rounded-full border border-zinc-700 px-3 py-1 text-xs uppercase tracking-wider text-zinc-300'>
           For HVAC, plumbers, electricians, and roofers
@@ -44,9 +49,7 @@ function Hero() {
             <Link href='/pricing'>See pricing</Link>
           </Button>
         </div>
-        <p className='text-sm text-zinc-500'>
-          No per-minute billing. No surprise overages. Cancel anytime.
-        </p>
+        <p className='text-sm text-zinc-500'>No per-minute billing. No surprise overages. Cancel anytime.</p>
       </div>
     </section>
   );
@@ -64,10 +67,7 @@ function SocialProof() {
   return (
     <section className='mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 px-4 sm:grid-cols-3'>
       {stats.map(([n, label]) => (
-        <div key={label} className='rounded-lg border border-zinc-800 bg-zinc-950 p-6 text-center'>
-          <div className='text-3xl font-bold text-white'>{n}</div>
-          <p className='mt-2 text-sm text-zinc-400'>{label}</p>
-        </div>
+        <AnimatedStat key={label} value={n} label={label} />
       ))}
     </section>
   );

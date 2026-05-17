@@ -71,11 +71,16 @@ const config: Config = {
           '0%': { rotate: '0deg' },
           '100%': { rotate: '360deg' },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'spin-slow': 'spin 10s linear infinite',
+        marquee: 'marquee 32s linear infinite',
       },
     },
   },
