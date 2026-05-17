@@ -1,5 +1,11 @@
 import Link from 'next/link';
-import { IoCheckmarkCircle, IoFlash, IoMoonOutline, IoShieldCheckmarkOutline } from 'react-icons/io5';
+import {
+  IoCheckmarkCircle,
+  IoCloseCircle,
+  IoFlash,
+  IoMoonOutline,
+  IoShieldCheckmarkOutline,
+} from 'react-icons/io5';
 
 import { AnimatedStat } from '@/components/animated-stat';
 import { CallTicker } from '@/components/call-ticker';
@@ -24,22 +30,24 @@ export default function HomePage() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* Hero — speaks directly to the missed-call pain                            */
+/* Hero                                                                      */
 /* ----------------------------------------------------------------------- */
 function Hero() {
   return (
-    <section className='relative overflow-hidden rounded-lg bg-black px-6 py-20 lg:px-16 lg:py-28'>
+    <section className='relative overflow-hidden bg-zinc-950 px-6 py-20 lg:px-16 lg:py-28'>
       <DotPattern />
+      {/* Subtle amber glow at top */}
+      <div className='pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(249,131,36,0.12),transparent)]' />
       <div className='relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 text-center'>
-        <span className='rounded-full border border-zinc-700 px-3 py-1 text-xs uppercase tracking-wider text-zinc-300'>
+        <span className='rounded-full border border-zinc-700 px-3 py-1 text-xs uppercase tracking-wider text-zinc-400'>
           For HVAC, plumbers, electricians, and roofers
         </span>
-        <h1 className='bg-gradient-to-br from-white to-neutral-300 bg-clip-text text-4xl font-extrabold leading-tight text-transparent lg:text-6xl'>
+        <h1 className='bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-4xl font-extrabold leading-tight text-transparent lg:text-6xl'>
           Every missed call is a $500 job walking to your competitor.
         </h1>
         <p className='max-w-2xl text-lg text-zinc-300 lg:text-xl'>
-          AutoReception is a flat-rate AI receptionist that picks up every call, books the job, and texts you the lead —
-          for less than what most answering services charge per hour.
+          AutoReception picks up every call, books the job, and texts you the lead — flat $79/mo, no per-minute
+          billing.
         </p>
         <div className='flex flex-col items-center gap-3 sm:flex-row'>
           <Button variant='sexy' asChild>
@@ -56,13 +64,13 @@ function Hero() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* Social proof / pain validation strip                                      */
+/* Social proof                                                              */
 /* ----------------------------------------------------------------------- */
 function SocialProof() {
-  const stats = [
+  const stats: [string, string][] = [
     ['62%', 'of calls to home-services SMBs go unanswered after hours'],
     ['$1,500', 'average value of an HVAC or plumbing emergency lead'],
-    ['$0.00', "what your current voicemail makes you when it doesn't pick up"],
+    ['$0.00', "what your voicemail earns you when it doesn't pick up"],
   ];
   return (
     <section className='mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 px-4 sm:grid-cols-3'>
@@ -74,7 +82,7 @@ function SocialProof() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* 3 feature blocks — directly address competitor gaps                       */
+/* Features                                                                  */
 /* ----------------------------------------------------------------------- */
 function Features() {
   const features = [
@@ -101,9 +109,9 @@ function Features() {
       </h2>
       <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'>
         {features.map((f) => (
-          <div key={f.title} className='rounded-lg border border-zinc-800 bg-zinc-950 p-6'>
+          <div key={f.title} className='rounded-lg border border-zinc-800 bg-zinc-950 p-6 transition-colors duration-200 hover:border-zinc-700'>
             <div className='mb-4'>{f.icon}</div>
-            <h3 className='mb-2 text-lg font-semibold'>{f.title}</h3>
+            <h3 className='mb-2 text-lg font-semibold text-white'>{f.title}</h3>
             <p className='text-sm text-zinc-400'>{f.copy}</p>
           </div>
         ))}
@@ -113,37 +121,65 @@ function Features() {
 }
 
 /* ----------------------------------------------------------------------- */
-/* "Vs. the alternatives" comparison — drives differentiation                 */
+/* Comparison table                                                          */
 /* ----------------------------------------------------------------------- */
+type CompRow = {
+  feature: string;
+  smith: boolean;
+  agency: boolean;
+  auto: boolean;
+  isBadThing: boolean;
+};
+
+function CompCell({ value, isAuto, isBadThing }: { value: boolean; isAuto: boolean; isBadThing: boolean }) {
+  if (isAuto) {
+    return <IoCheckmarkCircle className='mx-auto h-5 w-5 text-emerald-400' />;
+  }
+  if (value && isBadThing) {
+    return <IoCloseCircle className='mx-auto h-5 w-5 text-red-500' />;
+  }
+  if (!value && !isBadThing) {
+    return <IoCloseCircle className='mx-auto h-5 w-5 text-zinc-600' />;
+  }
+  return <span className='block text-center text-xs text-zinc-500'>—</span>;
+}
+
 function ComparisonStrip() {
-  const rows: Array<[string, string, string, string]> = [
-    ['Per-minute billing surprises', '✓', '✓', '✗'],
-    ['Bills you while caller waits on hold', '✓', '✓', '✗'],
-    ['Requires $300+/mo agency retainer', '✓', '✓', '✗'],
-    ['Books jobs into Jobber / Housecall Pro', '✗', '✗', '✓'],
-    ['Texts you the lead before they hang up', '✗', '✗', '✓'],
-    ['Flat monthly price', '✗', '✗', '✓'],
+  const rows: CompRow[] = [
+    { feature: 'Per-minute billing surprises', smith: true, agency: true, auto: false, isBadThing: true },
+    { feature: 'Bills you while caller waits on hold', smith: true, agency: true, auto: false, isBadThing: true },
+    { feature: 'Requires $300+/mo agency retainer', smith: true, agency: true, auto: false, isBadThing: true },
+    { feature: 'Books jobs into Jobber / Housecall Pro', smith: false, agency: false, auto: true, isBadThing: false },
+    { feature: 'Texts you the lead before they hang up', smith: false, agency: false, auto: true, isBadThing: false },
+    { feature: 'Flat monthly price', smith: false, agency: false, auto: true, isBadThing: false },
   ];
+
   return (
     <section className='mx-auto w-full max-w-4xl px-4'>
       <h2 className='mb-8 text-center text-2xl font-bold lg:text-3xl'>How AutoReception compares</h2>
       <div className='overflow-hidden rounded-lg border border-zinc-800'>
         <table className='w-full text-left text-sm'>
-          <thead className='bg-zinc-900 text-zinc-300'>
+          <thead className='bg-zinc-900'>
             <tr>
-              <th className='p-3'>&nbsp;</th>
-              <th className='p-3 text-center'>Smith.ai</th>
-              <th className='p-3 text-center'>Agency setup</th>
-              <th className='p-3 text-center'>AutoReception</th>
+              <th className='p-4 text-zinc-400'>&nbsp;</th>
+              <th className='p-4 text-center text-zinc-400'>Smith.ai</th>
+              <th className='p-4 text-center text-zinc-400'>Agency</th>
+              <th className='p-4 text-center font-semibold text-white'>AutoReception</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((r) => (
-              <tr key={r[0]} className='border-t border-zinc-800'>
-                <td className='p-3 text-zinc-300'>{r[0]}</td>
-                <td className='p-3 text-center'>{r[1]}</td>
-                <td className='p-3 text-center'>{r[2]}</td>
-                <td className='p-3 text-center text-emerald-400'>{r[3]}</td>
+              <tr key={r.feature} className='border-t border-zinc-800 transition-colors duration-200 hover:bg-zinc-900/40'>
+                <td className='p-4 text-zinc-300'>{r.feature}</td>
+                <td className='p-4'>
+                  <CompCell value={r.smith} isAuto={false} isBadThing={r.isBadThing} />
+                </td>
+                <td className='p-4'>
+                  <CompCell value={r.agency} isAuto={false} isBadThing={r.isBadThing} />
+                </td>
+                <td className='p-4'>
+                  <CompCell value={r.auto} isAuto={true} isBadThing={r.isBadThing} />
+                </td>
               </tr>
             ))}
           </tbody>
@@ -154,10 +190,13 @@ function ComparisonStrip() {
 }
 
 /* ----------------------------------------------------------------------- */
+/* Final CTA                                                                 */
+/* ----------------------------------------------------------------------- */
 function FinalCTA() {
   return (
-    <section className='mx-auto w-full max-w-3xl rounded-lg bg-black px-6 py-16 text-center lg:px-16'>
-      <h2 className='text-3xl font-bold lg:text-4xl'>Stop losing jobs to voicemail.</h2>
+    <section className='relative mx-auto w-full max-w-3xl overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 px-6 py-16 text-center lg:px-16'>
+      <div className='pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent' />
+      <h2 className='text-3xl font-bold text-white lg:text-4xl'>Stop losing jobs to voicemail.</h2>
       <p className='mt-3 text-zinc-400'>
         Set up your AI receptionist in 5 minutes. Try it free for your first 5 calls — no credit card required.
       </p>
