@@ -1,38 +1,31 @@
 # AutoReception — Project Context for Claude
 
 ## Project
-AI receptionist SaaS for home-services trades (HVAC, plumbers, electricians, roofers). Flat $79/mo, picks up every call, texts the lead. Built on Next.js 15 + Supabase + Stripe.
+AutoReception is a focused marketing/demo site for a missed-call recovery and SMS lead-warming offer for plumbers and home-service businesses.
 
----
+The current production app is intentionally simple:
+- Next.js App Router + TypeScript + Tailwind
+- Static marketing homepage
+- Interactive `/demo` route with local illustrative data
+- `/privacy`, `/terms`, `/robots.txt`, and `/sitemap.xml`
+- No Supabase, Stripe, auth dashboard, live voice API, or required build-time secrets
 
-## Design Context
+## Product Positioning
+This is not generic lead generation. The wedge is the conversion leak after marketing works:
+1. A homeowner calls.
+2. The business misses the call.
+3. AutoReception sends a fast, transparent text-back.
+4. The lead is warmed and qualified.
+5. The owner gets a callback-ready job card.
+6. Weekly reporting shows recovered opportunities and estimated revenue.
 
-### Users
-Small home-services business owners: time-poor, skeptical of tech, often on a phone between jobs. They want to know in 10 seconds if this solves missed calls. Job to be done: understand → sign up → get back to work.
+## Accuracy Rules
+- Demo data is illustrative unless real phone/SMS/CRM integrations are configured.
+- Do not claim Twilio, OpenAI, CRM, booking, payment, or auth integrations are live unless the code and environment prove it.
+- Avoid generic SaaS template routes unless they are actually implemented and useful.
 
-### Brand Personality
-**Reliable. Fast. No-BS.** Tradesperson-to-tradesperson directness. Confident and matter-of-fact. No corporate fluff, no startup cheerfulness.
-
-### Aesthetic Direction
-- **Reference**: Vercel.com — dark, sharp, high-contrast, clean typography, decisive whitespace
-- **Anti-reference**: Generic SaaS template aesthetic — boilerplate gradients, placeholder feel
-- **Theme**: Dark mode only. Near-black backgrounds, pure white text, single accent color
-- **Primary accent**: Amber-orange (`#F98324`) — replaces the rainbow starter gradient
-- **Positive/checkmarks**: emerald-400 (keep)
-- **Warnings**: amber-200/600 (keep)
-- **Fonts**: Montserrat Alternates (headings/buttons) + Montserrat (body)
-
-### Design Principles
-1. **Clarity over cleverness** — Every element earns its space. Remove decorative complexity that doesn't communicate value.
-2. **Dark and decisive** — Near-black + sharp white = professional-grade tool, not a consumer app.
-3. **Trades-first, always** — Would a plumber on a job site understand this immediately? If not, simplify.
-4. **One accent, used with intention** — Amber-orange only. No rainbow gradients, no secondary accent colors.
-5. **Typography carries the weight** — Strong copy + typographic hierarchy before decorative elements.
-
-### Open Items
-- `logo.tsx` wordmark still reads `UPDATE_THIS_WITH_YOUR_APP_DISPLAY_NAME` — needs updating to "AutoReception"
-- Animated SexyBorder gradient (cyan→magenta→orange) should be replaced with amber-orange for primary CTAs
-- Focus rings: change from `pink-500` → `amber-500` or white
-- Text selection highlight: change from `cyan-400` → `amber-400`
-
-> Full design context with color token table: `.impeccable.md`
+## Design Direction
+- Dark, decisive, trade-owner friendly.
+- Strong offer clarity over decorative complexity.
+- Primary accent: orange/ember.
+- Copy should help a skeptical local service owner understand the value in under 10 seconds.

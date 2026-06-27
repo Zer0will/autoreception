@@ -1,224 +1,158 @@
-import Link from 'next/link';
-import {
-  IoCheckmarkCircle,
-  IoCloseCircle,
-  IoFlash,
-  IoMoonOutline,
-  IoShieldCheckmarkOutline,
-} from 'react-icons/io5';
+import Link from "next/link";
+import { ArrowRight, BarChart3, CheckCircle2, MessageSquareText, PhoneMissed, TimerReset } from "lucide-react";
 
-import { AnimatedStat } from '@/components/animated-stat';
-import { CallTicker } from '@/components/call-ticker';
-import { DotPattern } from '@/components/dot-pattern';
-import { Button } from '@/components/ui/button';
-import { PricingSection } from '@/features/pricing/components/pricing-section';
+import { outcomes, site, steps } from "@/lib/site";
 
-export const dynamic = 'force-dynamic';
+const metrics = [
+  ["0-60 sec", "ideal response window after a missed call"],
+  ["4 facts", "urgency, job type, address, callback time"],
+  ["1 report", "weekly recovered-call revenue view"],
+];
+
+const buyerPains = [
+  "Your marketing works, then the phone rings while nobody can answer.",
+  "The homeowner leaves voicemail, then calls three competitors.",
+  "Your office sees a missed-call log, not a qualified job opportunity.",
+];
 
 export default function HomePage() {
   return (
-    <div className='flex flex-col gap-16 lg:gap-28'>
-      <Hero />
-      <CallTicker />
-      <SocialProof />
-      <Features />
-      <ComparisonStrip />
-      <PricingSection />
-      <FinalCTA />
-    </div>
-  );
-}
-
-/* ----------------------------------------------------------------------- */
-/* Hero                                                                      */
-/* ----------------------------------------------------------------------- */
-function Hero() {
-  return (
-    <section className='relative overflow-hidden bg-zinc-950 px-6 py-20 lg:px-16 lg:py-28'>
-      <DotPattern />
-      {/* Subtle amber glow at top */}
-      <div className='pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(249,131,36,0.12),transparent)]' />
-      <div className='relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 text-center'>
-        <span className='rounded-full border border-zinc-700 px-3 py-1 text-xs uppercase tracking-wider text-zinc-400'>
-          For HVAC, plumbers, electricians, and roofers
-        </span>
-        <h1 className='bg-gradient-to-br from-white to-neutral-400 bg-clip-text text-4xl font-extrabold leading-tight text-transparent lg:text-6xl'>
-          Every missed call is a $500 job walking to your competitor.
-        </h1>
-        <p className='max-w-2xl text-lg text-zinc-300 lg:text-xl'>
-          AutoReception picks up every call, books the job, and texts you the lead — flat $79/mo, no per-minute
-          billing.
-        </p>
-        <div className='flex flex-col items-center gap-3 sm:flex-row'>
-          <Button variant='sexy' asChild>
-            <Link href='/signup'>Start free — 5 calls on us</Link>
-          </Button>
-          <Button variant='secondary' asChild>
-            <Link href='/pricing'>See pricing</Link>
-          </Button>
-        </div>
-        <p className='text-sm text-zinc-500'>No per-minute billing. No surprise overages. Cancel anytime.</p>
-      </div>
-    </section>
-  );
-}
-
-/* ----------------------------------------------------------------------- */
-/* Social proof                                                              */
-/* ----------------------------------------------------------------------- */
-function SocialProof() {
-  const stats: [string, string][] = [
-    ['62%', 'of calls to home-services SMBs go unanswered after hours'],
-    ['$1,500', 'average value of an HVAC or plumbing emergency lead'],
-    ['$0.00', "what your voicemail earns you when it doesn't pick up"],
-  ];
-  return (
-    <section className='mx-auto grid w-full max-w-5xl grid-cols-1 gap-6 px-4 sm:grid-cols-3'>
-      {stats.map(([n, label]) => (
-        <AnimatedStat key={label} value={n} label={label} />
-      ))}
-    </section>
-  );
-}
-
-/* ----------------------------------------------------------------------- */
-/* Features                                                                  */
-/* ----------------------------------------------------------------------- */
-function Features() {
-  const features = [
-    {
-      icon: <IoFlash className='h-6 w-6 text-amber-400' />,
-      title: 'Picks up in 1 ring. Day or night.',
-      copy: 'Your AI receptionist answers every call in under a second, in your business voice — even at 2am on a Saturday.',
-    },
-    {
-      icon: <IoShieldCheckmarkOutline className='h-6 w-6 text-emerald-400' />,
-      title: 'Flat $79 a month. No per-minute billing.',
-      copy: 'Smith.ai bills 50¢ per call plus add-ons. Most agency setups want $300–$1,000/mo retainers. AutoReception is one flat price — busy month or slow.',
-    },
-    {
-      icon: <IoMoonOutline className='h-6 w-6 text-sky-400' />,
-      title: 'Texts the lead to your phone in real time.',
-      copy: 'The moment a caller asks for service, you get an SMS with their name, number, address, and what they need. Call them back before your competitor wakes up.',
-    },
-  ];
-  return (
-    <section className='mx-auto w-full max-w-5xl px-4'>
-      <h2 className='mb-10 text-center text-3xl font-bold lg:text-4xl'>
-        Built for trades — not for receptionists in suits.
-      </h2>
-      <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'>
-        {features.map((f) => (
-          <div key={f.title} className='rounded-lg border border-zinc-800 bg-zinc-950 p-6 transition-colors duration-200 hover:border-zinc-700'>
-            <div className='mb-4'>{f.icon}</div>
-            <h3 className='mb-2 text-lg font-semibold text-white'>{f.title}</h3>
-            <p className='text-sm text-zinc-400'>{f.copy}</p>
+    <main className="overflow-hidden bg-ink">
+      <section className="relative px-6 py-20 md:py-28">
+        <div className="absolute inset-0 bg-grid bg-[length:48px_48px] opacity-20" />
+        <div className="absolute left-1/2 top-20 size-[520px] -translate-x-1/2 rounded-full bg-ember/20 blur-3xl" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_.95fr]">
+          <div>
+            <p className="mb-5 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-sage">
+              For plumbers and home-service owners who lose jobs to voicemail
+            </p>
+            <h1 className="max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.05em] text-white md:text-7xl">
+              Turn missed calls into warmed, qualified jobs.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72">
+              AutoReception is not another generic lead-gen agency. It plugs the revenue leak after marketing works: instant text-back, lead warming, job qualification, and a weekly owner report.
+            </p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link className="inline-flex items-center justify-center gap-2 rounded-full bg-ember px-7 py-4 font-black text-white shadow-glow transition hover:-translate-y-0.5" href="/demo">
+                Walk through the demo <ArrowRight size={18} />
+              </Link>
+              <a className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-4 font-black text-white transition hover:bg-white/10" href="#offer">
+                See the offer
+              </a>
+            </div>
           </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
-/* ----------------------------------------------------------------------- */
-/* Comparison table                                                          */
-/* ----------------------------------------------------------------------- */
-type CompRow = {
-  feature: string;
-  smith: boolean;
-  agency: boolean;
-  auto: boolean;
-  isBadThing: boolean;
-};
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.07] p-4 shadow-2xl backdrop-blur">
+            <div className="rounded-[1.5rem] bg-cream p-5 text-ink">
+              <div className="flex items-center justify-between border-b border-ink/10 pb-4">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.22em] text-ember">Recovered lead</p>
+                  <h2 className="text-2xl font-black">Burst pipe / after-hours</h2>
+                </div>
+                <span className="rounded-full bg-sage px-3 py-1 text-xs font-black">Hot</span>
+              </div>
+              <div className="mt-5 grid gap-3">
+                {[
+                  ["Customer", "Maya Robinson, homeowner"],
+                  ["Problem", "Water under kitchen sink, shutoff failed"],
+                  ["Intent", "Wants first available emergency visit"],
+                  ["Next action", "Call within 10 minutes; quote dispatch fee"],
+                ].map(([label, value]) => (
+                  <div className="rounded-2xl bg-white p-4" key={label}>
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-ink/45">{label}</p>
+                    <p className="mt-1 font-bold">{value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 rounded-2xl bg-ink p-4 text-white">
+                <p className="text-sm text-white/65">Illustrative weekly report</p>
+                <p className="mt-1 text-3xl font-black">$7,850</p>
+                <p className="text-sm text-white/65">estimated revenue from recovered missed calls</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-function CompCell({ value, isAuto, isBadThing }: { value: boolean; isAuto: boolean; isBadThing: boolean }) {
-  if (isAuto) {
-    return <IoCheckmarkCircle className='mx-auto h-5 w-5 text-emerald-400' />;
-  }
-  if (value && isBadThing) {
-    return <IoCloseCircle className='mx-auto h-5 w-5 text-red-500' />;
-  }
-  if (!value && !isBadThing) {
-    return <IoCloseCircle className='mx-auto h-5 w-5 text-zinc-600' />;
-  }
-  return <span className='block text-center text-xs text-zinc-500'>—</span>;
-}
+      <section className="border-y border-white/10 bg-white/[0.04] px-6 py-8">
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
+          {metrics.map(([value, label]) => (
+            <div className="rounded-3xl border border-white/10 bg-white/[0.05] p-6" key={value}>
+              <p className="text-3xl font-black text-white">{value}</p>
+              <p className="mt-2 text-sm text-white/65">{label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-function ComparisonStrip() {
-  const rows: CompRow[] = [
-    { feature: 'Per-minute billing surprises', smith: true, agency: true, auto: false, isBadThing: true },
-    { feature: 'Bills you while caller waits on hold', smith: true, agency: true, auto: false, isBadThing: true },
-    { feature: 'Requires $300+/mo agency retainer', smith: true, agency: true, auto: false, isBadThing: true },
-    { feature: 'Books jobs into Jobber / Housecall Pro', smith: false, agency: false, auto: true, isBadThing: false },
-    { feature: 'Texts you the lead before they hang up', smith: false, agency: false, auto: true, isBadThing: false },
-    { feature: 'Flat monthly price', smith: false, agency: false, auto: true, isBadThing: false },
-  ];
-
-  return (
-    <section className='mx-auto w-full max-w-4xl px-4'>
-      <h2 className='mb-8 text-center text-2xl font-bold lg:text-3xl'>How AutoReception compares</h2>
-      <div className='overflow-hidden rounded-lg border border-zinc-800'>
-        <table className='w-full text-left text-sm'>
-          <thead className='bg-zinc-900'>
-            <tr>
-              <th className='p-4 text-zinc-400'>&nbsp;</th>
-              <th className='p-4 text-center text-zinc-400'>Smith.ai</th>
-              <th className='p-4 text-center text-zinc-400'>Agency</th>
-              <th className='p-4 text-center font-semibold text-white'>AutoReception</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((r) => (
-              <tr key={r.feature} className='border-t border-zinc-800 transition-colors duration-200 hover:bg-zinc-900/40'>
-                <td className='p-4 text-zinc-300'>{r.feature}</td>
-                <td className='p-4'>
-                  <CompCell value={r.smith} isAuto={false} isBadThing={r.isBadThing} />
-                </td>
-                <td className='p-4'>
-                  <CompCell value={r.agency} isAuto={false} isBadThing={r.isBadThing} />
-                </td>
-                <td className='p-4'>
-                  <CompCell value={r.auto} isAuto={true} isBadThing={r.isBadThing} />
-                </td>
-              </tr>
+      <section className="px-6 py-20" id="offer">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.9fr_1.1fr]">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-ember">The different offer</p>
+            <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] text-white md:text-5xl">
+              Not “we got you leads.” More like “we helped you convert the calls you already earned.”
+            </h2>
+          </div>
+          <div className="grid gap-4">
+            {outcomes.map((item) => (
+              <div className="flex gap-4 rounded-3xl border border-white/10 bg-white/[0.06] p-5" key={item}>
+                <CheckCircle2 className="mt-1 shrink-0 text-sage" />
+                <p className="text-lg font-semibold leading-7 text-white/80">{item}</p>
+              </div>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  );
-}
+          </div>
+        </div>
+      </section>
 
-/* ----------------------------------------------------------------------- */
-/* Final CTA                                                                 */
-/* ----------------------------------------------------------------------- */
-function FinalCTA() {
-  return (
-    <section className='relative mx-auto w-full max-w-3xl overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 px-6 py-16 text-center lg:px-16'>
-      <div className='pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent' />
-      <h2 className='text-3xl font-bold text-white lg:text-4xl'>Stop losing jobs to voicemail.</h2>
-      <p className='mt-3 text-zinc-400'>
-        Set up your AI receptionist in 5 minutes. Try it free for your first 5 calls — no credit card required.
-      </p>
-      <div className='mt-6 flex justify-center gap-3'>
-        <Button variant='sexy' asChild>
-          <Link href='/signup'>Start free</Link>
-        </Button>
-        <Button variant='secondary' asChild>
-          <Link href='/pricing'>See pricing</Link>
-        </Button>
-      </div>
-      <ul className='mt-8 grid grid-cols-1 gap-2 text-sm text-zinc-400 sm:grid-cols-3'>
-        <li className='flex items-center justify-center gap-2'>
-          <IoCheckmarkCircle className='text-emerald-400' /> No credit card to start
-        </li>
-        <li className='flex items-center justify-center gap-2'>
-          <IoCheckmarkCircle className='text-emerald-400' /> Cancel anytime
-        </li>
-        <li className='flex items-center justify-center gap-2'>
-          <IoCheckmarkCircle className='text-emerald-400' /> Live in 5 minutes
-        </li>
-      </ul>
-    </section>
+      <section className="bg-cream px-6 py-20 text-ink" id="how-it-works">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-ember">How it works</p>
+            <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] md:text-5xl">A simple recovery loop for missed-call revenue.</h2>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-4">
+            {steps.map((step) => (
+              <article className="rounded-[1.5rem] bg-white p-6 shadow-sm" key={step.eyebrow}>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-ember">{step.eyebrow}</p>
+                <h3 className="mt-4 text-xl font-black">{step.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-ink/65">{step.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3">
+          {[
+            [PhoneMissed, "Bear case", buyerPains.join(" ")],
+            [MessageSquareText, "Fix", "Respond instantly, qualify politely, and give the owner a callback-ready summary."],
+            [BarChart3, "Proof", "Report recovered opportunities weekly so the business sees value beyond lead counts."],
+          ].map(([Icon, title, body]) => {
+            const CardIcon = Icon as typeof PhoneMissed;
+            return (
+              <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-7" key={String(title)}>
+                <CardIcon className="text-ember" size={32} />
+                <h3 className="mt-5 text-2xl font-black text-white">{String(title)}</h3>
+                <p className="mt-3 leading-7 text-white/68">{String(body)}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="px-6 pb-24">
+        <div className="mx-auto max-w-5xl rounded-[2rem] bg-ember p-8 text-center text-white shadow-glow md:p-12">
+          <TimerReset className="mx-auto" size={40} />
+          <h2 className="mt-5 text-4xl font-black tracking-[-0.04em] md:text-5xl">Show owners the leak, then show the recovery.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/85">
+            Use the demo to explain the shift from “digital marketing agency” to a revenue recovery system for booked jobs.
+          </p>
+          <Link className="mt-8 inline-flex rounded-full bg-white px-8 py-4 font-black text-ink transition hover:bg-sage" href={site.auditUrl}>
+            Open the interactive demo
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }
