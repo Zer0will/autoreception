@@ -144,9 +144,9 @@ export default function HomePage() {
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-5xl rounded-[2rem] bg-ember p-8 text-center text-white shadow-glow md:p-12">
           <TimerReset className="mx-auto" size={40} />
-          <h2 className="mt-5 text-4xl font-black tracking-[-0.04em] md:text-5xl">Use this as the pitch: stop losing the leads you already paid for.</h2>
+          <h2 className="mt-5 text-4xl font-black tracking-[-0.04em] md:text-5xl">Stop losing the leads you already paid for.</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/85">
-            Show the owner the leak first: their ads and referrals already make the phone ring. AutoReception recovers the value after that by texting back, warming the lead, qualifying the job, and proving what was recovered each week.
+            Your ads and referrals already make the phone ring. AutoReception recovers the value after that by texting back, warming the lead, qualifying the job, and proving what was recovered each week.
           </p>
           <Link className="mt-8 inline-flex rounded-full bg-white px-8 py-4 font-black text-ink transition hover:bg-sage" href={site.auditUrl}>
             Open the interactive demo

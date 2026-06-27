@@ -167,9 +167,9 @@ export default function DemoClient() {
         </div>
 
         <div className="mt-14 rounded-[2rem] bg-white p-8 text-center text-ink">
-          <h2 className="text-3xl font-black tracking-[-0.04em]">Use this as the pitch: “We help you stop losing the leads you already paid for.”</h2>
+          <h2 className="text-3xl font-black tracking-[-0.04em]">Stop losing the leads you already paid for.</h2>
           <p className="mx-auto mt-3 max-w-2xl text-ink/60">
-            The next real step is connecting the business phone/SMS provider, sending instant text-backs, and routing qualified job summaries into the owner’s preferred inbox or CRM.
+            Connect your business phone/SMS provider, send instant text-backs, and route qualified job summaries into your preferred inbox or CRM.
           </p>
           <Link className="mt-6 inline-flex rounded-full bg-ink px-7 py-4 font-black text-white" href="/">
             Back to homepage
