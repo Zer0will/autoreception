@@ -27,10 +27,10 @@ export default function HomePage() {
               For plumbers and home-service owners who lose jobs to voicemail
             </p>
             <h1 className="max-w-4xl text-5xl font-black leading-[0.95] tracking-[-0.05em] text-white md:text-7xl">
-              Turn missed calls into warmed, qualified jobs.
+              Turn missed calls into warm, qualified job opportunities.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72">
-              AutoReception is not another generic lead-gen agency. It plugs the revenue leak after marketing works: instant text-back, lead warming, job qualification, and a weekly owner report.
+              AutoReception catches missed calls, texts the customer back in seconds, qualifies the job, and sends the owner a callback-ready summary — so marketing spend turns into booked work, not voicemail.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <Link className="inline-flex items-center justify-center gap-2 rounded-full bg-ember px-7 py-4 font-black text-white shadow-glow transition hover:-translate-y-0.5" href="/demo">
@@ -90,7 +90,7 @@ export default function HomePage() {
           <div>
             <p className="text-sm font-black uppercase tracking-[0.22em] text-ember">The different offer</p>
             <h2 className="mt-4 text-4xl font-black tracking-[-0.04em] text-white md:text-5xl">
-              Not “we got you leads.” More like “we helped you convert the calls you already earned.”
+              Not “we got you more leads.” “We helped you stop losing the leads you already paid for.”
             </h2>
           </div>
           <div className="grid gap-4">
@@ -144,9 +144,9 @@ export default function HomePage() {
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-5xl rounded-[2rem] bg-ember p-8 text-center text-white shadow-glow md:p-12">
           <TimerReset className="mx-auto" size={40} />
-          <h2 className="mt-5 text-4xl font-black tracking-[-0.04em] md:text-5xl">Show owners the leak, then show the recovery.</h2>
+          <h2 className="mt-5 text-4xl font-black tracking-[-0.04em] md:text-5xl">Use this as the pitch: stop losing the leads you already paid for.</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/85">
-            Use the demo to explain the shift from “digital marketing agency” to a revenue recovery system for booked jobs.
+            Show the owner the leak first: their ads and referrals already make the phone ring. AutoReception recovers the value after that by texting back, warming the lead, qualifying the job, and proving what was recovered each week.
           </p>
           <Link className="mt-8 inline-flex rounded-full bg-white px-8 py-4 font-black text-ink transition hover:bg-sage" href={site.auditUrl}>
             Open the interactive demo

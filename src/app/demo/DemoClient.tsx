@@ -57,7 +57,7 @@ export default function DemoClient() {
               Show the owner exactly what happens after a missed call.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/72">
-              This is a local mock demo, not a live phone integration. It is designed to sell the operational outcome: recovered intent, warmer conversations, qualified callbacks, and proof.
+              This is a mock demo, not a live phone integration. It shows the offer clearly: stop losing the leads the business already paid for by recovering intent, warming the conversation, qualifying the job, and proving the result.
             </p>
             <div className="mt-8 flex gap-3">
               <button
@@ -167,9 +167,9 @@ export default function DemoClient() {
         </div>
 
         <div className="mt-14 rounded-[2rem] bg-white p-8 text-center text-ink">
-          <h2 className="text-3xl font-black tracking-[-0.04em]">Use this as the pitch: “We recover the value after your marketing makes the phone ring.”</h2>
+          <h2 className="text-3xl font-black tracking-[-0.04em]">Use this as the pitch: “We help you stop losing the leads you already paid for.”</h2>
           <p className="mx-auto mt-3 max-w-2xl text-ink/60">
-            The next real step is connecting the business phone/SMS provider and routing summaries into the owner’s preferred inbox or CRM.
+            The next real step is connecting the business phone/SMS provider, sending instant text-backs, and routing qualified job summaries into the owner’s preferred inbox or CRM.
           </p>
           <Link className="mt-6 inline-flex rounded-full bg-ink px-7 py-4 font-black text-white" href="/">
             Back to homepage

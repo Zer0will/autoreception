@@ -9,7 +9,7 @@ export const site = {
 };
 
 export const outcomes = [
-  "Catches missed calls before the homeowner calls the next shop",
+  "Catches missed calls before the homeowner calls the next company",
   "Sends an instant, transparent text-back conversation",
   "Qualifies urgency, address, job type, budget signals, and access notes",
   "Packages the lead into a callback-ready job card",
@@ -20,7 +20,7 @@ export const steps = [
   {
     eyebrow: "01 / Missed call",
     title: "The phone rings while your crew is under a sink.",
-    body: "Instead of voicemail, AutoReception starts the recovery flow and keeps the homeowner engaged while intent is still hot.",
+    body: "Instead of letting the caller hit voicemail and shop around, AutoReception starts the recovery flow while intent is still hot.",
   },
   {
     eyebrow: "02 / Text-back",
@@ -34,7 +34,7 @@ export const steps = [
   },
   {
     eyebrow: "04 / Revenue report",
-    title: "The owner sees whether the system paid for itself.",
+    title: "The owner sees what was recovered.",
     body: "Weekly reporting ties recovered calls to qualified jobs and booked revenue instead of vague lead counts.",
   },
 ];
